@@ -1,0 +1,61 @@
+application: reapbenefit-fbdb
+version: 0-1
+runtime: go
+api_version: go1
+
+handlers:
+- url: /
+  static_files: webui/index.html
+  upload: webui/index.html
+
+- url: /index.html
+  static_files: webui/index.html
+  upload: webui/index.html
+
+- url: /manifest.json
+  static_files: webui/manifest.json
+  upload: webui/manifest.json
+
+- url: /favicon.ico
+  static_files: webui/img/favicon.ico
+  upload: webui/img/favicon.ico
+
+- url: /(.*\.(js.map))
+  mime_type: application/octet-stream
+  static_files: webui/\1
+  upload: webui/(.*\.(js.map))
+
+- url: /(.*\.(css|gif|png|jpg|jpeg|ico|svg|js|html))
+  static_files: webui/\1
+  upload: webui/(.*\.(css|gif|png|jpg|jpeg|ico|svg|js|html))
+
+- url: /(.*\.(woff2|woff|ttf))
+  static_files: webui/\1
+  upload: webui/(.*\.(woff2|woff|ttf))
+
+- url: /.*
+  script: _go_app
+
+skip_files:
+- ^(.*/)?app\.yaml
+- ^(.*/)?app\.yml
+- ^(.*/)?index\.yaml
+- ^(.*/)?index\.yml
+- ^(.*/)?#.*#
+- ^(.*/)?.*~
+- ^(.*/)?.*\.py[co]
+- ^(.*/)?.*/RCS/.*
+- ^(.*/)?\..*
+- ^(.*/)?.*\.bak$
+- ^noup/.*
+- ^webui/README\.md
+- ^webui/angular-cli.*
+- ^webui/config
+- ^webui/e2e
+- ^webui/node_modules
+- ^webui/package\.json
+- ^webui/src
+- ^webui/tmp
+- ^webui/tslint\.json
+- ^webui/typings
+- ^webui/typings\.json
